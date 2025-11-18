@@ -816,7 +816,8 @@ namespace FirmaXadesNet
             Cert cert;
 
             cert = new Cert();
-            cert.IssuerSerial.X509IssuerName = parameters.Signer.Certificate.IssuerName.Name;
+            //cert.IssuerSerial.X509IssuerName = parameters.Signer.Certificate.IssuerName.Name;
+            cert.IssuerSerial.X509IssuerName = parameters.Signer.Certificate.IssuerName.Name.Replace(", S=", ", ST=");
             cert.IssuerSerial.X509SerialNumber = parameters.Signer.Certificate.GetSerialNumberAsDecimalString();
             DigestUtil.SetCertDigest(parameters.Signer.Certificate.GetRawCertData(), parameters.DigestMethod, cert.CertDigest);
             signedSignatureProperties.SigningCertificate.CertCollection.Add(cert);
